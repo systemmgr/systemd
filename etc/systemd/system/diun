@@ -1,0 +1,18 @@
+[Unit]
+Description=Diun
+Documentation=https://crazymax.dev/diun/
+After=syslog.target
+After=network.target
+
+[Service]
+RestartSec=2s
+Type=simple
+User=root
+Group=root
+ExecStart=/usr/local/bin/diun serve --config /etc/diun/diun.yml --log-level info
+Restart=always
+Environment=TZ=America/New_York
+Environment=DIUN_DB_PATH=/var/lib/diun/diun.db
+
+[Install]
+WantedBy=multi-user.target
